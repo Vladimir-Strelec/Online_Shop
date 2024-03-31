@@ -13,6 +13,9 @@ class Order(models.Model):
     data_joined = models.DateTimeField(auto_now_add=True, )
     data_edit = models.DateTimeField(auto_now=True, )
 
+    def __str__(self):
+        return f"{self.image} -> {self.size} -> {self.data_joined}"
+
 
 class Address(models.Model):
     Nürnberg = 'Nürnberg'
