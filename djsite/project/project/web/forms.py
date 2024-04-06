@@ -6,7 +6,11 @@ from .models import Order
 class CreateOrder(forms.ModelForm, forms.Form):
     class Meta:
         model = Order
-        fields = '__all__'
+        fields = ['image', 'size']
+        widgets = {
+            'image': forms.FileInput(attrs={'class': 'form-control'}),
+            'size': forms.Select(attrs={'class': 'form-control'})
+        }
 
     def is_valid(self):
         if self.data:

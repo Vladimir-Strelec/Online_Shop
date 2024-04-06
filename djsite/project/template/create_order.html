@@ -1,26 +1,17 @@
 {% extends 'base.html'%}
 
-{% block content%}
-<form class="was-validated" action="{% url 'create_order' %}" method="post">
-    {% csrf_token %}
+{% block content %}
 
-  <div class="mb-3">
-    <select class="form-select" required aria-label="select example">
-      <option value="120 x 140" href="{{form.size}}"></option>
-    </select>
-    <div class="invalid-feedback">Example invalid select feedback></div>
-  </div>
+    <div class="mb-3">
+        <table>
+    <form class="was-validated" action="{% url 'create_order' %}" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+    </form>
 
-  <div class="mb-3">
-    <input  type="file" class="form-control" aria-label="file example" required href="{{form.image}}">
-
-    <div class="invalid-feedback">Example invalid form file feedback</div>
-  </div>
-
-  <div class="mb-3">
-    <button class="btn btn-primary" type="submit" disabled>Submit form</button>
-  </div>
-</form>
-
+        </table>
+        <button class="p-3 mb-2 bg-warning text-dark" type="submit">Order</button>
+    </div>
 
 {% endblock %}
+
