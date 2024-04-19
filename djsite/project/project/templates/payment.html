@@ -1,9 +1,28 @@
 {% extends 'base.html'%}
-{% load crispy_forms_tags%}
+
 
 
 {% block content %}
-    <h2 style="text-align">Buy a Painting</h2>
-    <div class="container"></div>
-    {% crispy form %}
+<h2 style="text-align center">Buy a Painting</h2>
+<div class="container">
+    <form action="{% url 'payment' %}" method="post">
+
+        <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                    aria-expanded="false">
+                Кнопка выпадающего списка
+            </button>
+
+            {{form.image}}
+            <ul class="dropdown-menu">
+                <li>{% for s in form.size %}
+                    <a class="dropdown-item" href="#">{{s}}
+                        {% endfor %}</a>
+                </li>
+            </ul>
+        </div>
+    </form>
+
+</div>
+
 {% endblock %}

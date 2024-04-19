@@ -5,17 +5,17 @@ from django import forms
 from .models import Painting
 
 
-class PaymentForm(forms.ModelForm):
-    class Meta:
-        model = Painting
-        fields = '__all__'
+class PaymentForm(forms.Form):
+    image = forms.ImageField()
+    size = forms.ChoiceField(choices=Painting.ALL_SIZE)
 
-        def __init__(self, *args, **kwargs):
-            super().__init__(*args, **kwargs)
-            self.helper = FormHelper(self)
-            self.helper.layout = Layout(
-                "image",
-                "size",
-                Submit("submit", "Buy", css_class='button white btn-block btn-primary')
-            )
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper(self)
+        self.helper.layout = Layout(
+            "image",
+            "size",
+            Submit("submit", "Buy", css_class='button white btn-block btn-primary')
+        )
 
