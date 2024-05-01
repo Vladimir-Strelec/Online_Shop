@@ -1,0 +1,16 @@
+{% extends 'base.html'%}
+
+
+
+{% block content %}
+    <h2 style="text-align: center">Registration</h2>
+    <form action="{% url 'register' %}" method="post">
+        {% csrf_token %}
+        {% for row in form %}
+            <p style="text-align: center">{{ row }}</p>
+            <div class="form-error" style="text-align: center">{{ row.errors }}</div>
+        {% endfor %}
+        <button style="margin:0 auto;
+    display:block" type="submit">Register</button>
+    </form>
+{% endblock %}
