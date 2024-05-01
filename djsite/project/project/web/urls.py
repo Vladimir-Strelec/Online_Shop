@@ -1,8 +1,9 @@
 from django.urls import path
 
-from .views import painting_payment
+from .views import home, painting_payment
 
 urlpatterns = (
-    path("", painting_payment, name='payment'),
+    path("", home, name='home'),
+    path("pay/", painting_payment, name='payment'),
 )
 
