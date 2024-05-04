@@ -9,6 +9,7 @@
     <form style="align-items: center; background: black;" action="{% url 'payment' %}" method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form }}
+
         <button type="submit" role="button"> To buy</button>
     </form>
 

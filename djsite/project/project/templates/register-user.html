@@ -16,21 +16,28 @@
 <!--        <button style="margin:0 auto;-->
 <!--    display:block" type="submit">Register</button>-->
 <!--    </form>-->
-<div style="margin:0 auto; display:block">
+<div style="margin:0 auto; display:block; background-image: url('https://pixabay.com/illustrations/water-droplets-rain-blue-music-8622588/');">
     <form style="width: 70%; margin: 0 auto;" method="post" enctype="multipart/form-data">
         {% csrf_token %}
+        <div class="form-control" style="width: 50%; margin: 0 auto; background-color: yellow;">
+
         {% for f in form %}
         <div class="form-col" style="wight: 50%">
-            <div class="col-md-6 mb-3">
-                <label for="validationServer01">{{f.label}}</label>
-                <input type="text" class="form-control is-valid" id="validationServer01" required src={{f}}>
+
+            <label>{{f.label}}</label>
+            {% if f == form.email %}
+            {{form.email}}
+            {% elif f == form.password1 %}
+            {{form.password1}}
+            {% elif f == form.password2 %}
+            {{form.password2}}
+            {% endif %}
                 <div class="valid-feedback">
                     {{f.errors}}
                 </div>
-            </div>
         </div>
         {% endfor %}
-        <div class="form-group">
+            <div class="form-group">
             <div class="form-check">
                 <input class="form-check-input is-invalid" type="checkbox" value="" id="invalidCheck3"
                        aria-describedby="invalidCheck3Feedback" required>
@@ -42,7 +49,9 @@
                 </div>
             </div>
         </div>
-        <button class="btn btn-primary" type="submit">Submit form</button>
+        <button class="btn btn-primary" type="submit" style="background-color: #000000;">Submit form</button>
+        </div>
+
     </form>
 </div>
 {% endblock %}
