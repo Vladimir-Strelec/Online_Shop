@@ -1,0 +1,37 @@
+body {
+    background: url('/static/img/ai-generated-8729254_1920.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.container {
+    margin: 10px 0 0 0;
+}
+
+.filter {
+    margin: 3%;
+    width: 40%;
+    backdrop-filter: blur(20px);
+    box-shadow: 3px 1px  6px 1px grey;
+    border: 2px solid black;
+    border-radius: 25px;
+}
+
+.label-and-text {
+    color: white;
+}
+
+.form-control {
+  background: transparent;
+
+  border: 1px 1px solid #994;
+  box-shadow: -1px -1px  6px 3px grey;
+
+}
+
+
+
+
+text {
+    box-shadow: -2px -2px 0.5px 0.5px #000000;
+}
