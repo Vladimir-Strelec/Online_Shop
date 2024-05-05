@@ -35,3 +35,8 @@ body {
 text {
     box-shadow: -2px -2px 0.5px 0.5px #000000;
 }
+
+.button {
+    color: white;
+    border: 1px 1px solid #994;
+}

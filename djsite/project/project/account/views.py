@@ -3,6 +3,7 @@ import string
 
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
+from django.contrib.auth.views import LoginView
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views.generic import CreateView
@@ -36,4 +37,14 @@ def create_user(request):
             return redirect('home')
 
     form = RegisterUserForm()
-    return render(request, 'register-user.html', {'form': form})
+    return render(request, 'account/register-user.html', {'form': form})
+
+
+class UserLoginView(LoginView):
+    template_name = 'account/login.html'
+    success_url = reverse_lazy('index')
+
+    def get_success_url(self):
+        if self.success_url:
+            return self.success_url
+        return super().get_success_url()
