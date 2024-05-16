@@ -4,8 +4,9 @@ import string
 from django.contrib import auth, messages
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
-from django.contrib.auth.views import LoginView
+from django.contrib.auth.views import LoginView, LogoutView
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy, reverse
@@ -62,6 +63,8 @@ def my_view_login(request):
     return render(request,'account/login.html', {'form': form})
 
 
+class LogOutUser(LoginRequiredMixin, LogoutView):
+    template_name = 'account/login.html'
 # def login(request):
 #     if request.method == 'POST':
 #         form = LoginUserForm(data=request.POST)

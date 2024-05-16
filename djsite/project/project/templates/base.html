@@ -23,7 +23,7 @@
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-
+        {% if request.user.is_authenticated %}
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
@@ -47,15 +47,22 @@
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
             </form>
         </div>
+        <li class="nav-item">
+            <a class="nav-link text-white" role="button" href="{% url 'logout' request.user.id %}">Logout</a>
+        </li>
+        {% elif not request.user.is_authenticated %}
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
                 <a class="nav-link text-white" href="{% url 'register' %}">Register</a>
             </li>
-            <h3 style="color: white;">|</h3>
+
             <li class="nav-item">
                 <a class="nav-link text-white" role="button" href="{% url 'login' %}">Login</a>
             </li>
         </ul>
+
+
+        {% endif %}
     </nav>
     {% block content %}
     {% endblock %}
