@@ -8,12 +8,13 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
 from django.contrib.auth.views import LoginView, LogoutView
 from django.http import HttpResponseRedirect
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy, reverse
 from django.views.generic import CreateView
 
 from .forms import RegisterUserForm, LoginUserForm
 from .models import ShopUser
+from .utils import send_email_for_verify
 
 
 def client_numer_generator(size=6, chars=string.ascii_uppercase + string.digits):
@@ -37,7 +38,7 @@ def create_user(request):
             user = User.objects.create(username=client_numer, email=email, password=password1)
             user.set_password(password1)
             user.save()
-
+            send_email_for_verify(request, user)
             return redirect('home')
 
     form = RegisterUserForm()
@@ -48,7 +49,9 @@ def my_view_login(request):
     form = LoginUserForm()
     if request.method == 'POST':
         form = LoginUserForm(request.POST)
-        if form.is_valid():
+        user_from_data = (User.objects.filter(email=request.POST['email']))
+        if form.is_valid() and user_from_data:
+
             email = request.POST["email"]
             password = request.POST["password"]
             username = User.objects.filter(email=email)[0].username
@@ -65,6 +68,12 @@ def my_view_login(request):
 
 class LogOutUser(LoginRequiredMixin, LogoutView):
     template_name = 'account/login.html'
+
+
+def verifyEmailView(request):
+    u = request
+    return u
+
 # def login(request):
 #     if request.method == 'POST':
 #         form = LoginUserForm(data=request.POST)
