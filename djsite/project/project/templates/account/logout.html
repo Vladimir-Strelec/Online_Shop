@@ -1,0 +1,14 @@
+{% extends 'base.html'%}
+
+
+
+{% block content %}
+    <div class="container" method="post" enctype="multipart/form-data">
+
+        {% csrf_token %}
+        <div class="filter">
+            <p style="text-align: center; color: white;">Are you sure you want to log out?</p>
+            <button class="button" type="submit">Logout</button>
+        </div>
+    </div>
+{% endblock %}

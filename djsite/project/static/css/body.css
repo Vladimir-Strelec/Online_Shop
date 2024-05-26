@@ -11,10 +11,12 @@ body {
 .filter {
     margin: 3%;
     width: 40%;
+    min-height: 30vh;
     backdrop-filter: blur(20px);
     box-shadow: 3px 1px  6px 1px grey;
     border: 2px solid black;
     border-radius: 25px;
+
 }
 
 .label-and-text {
@@ -23,9 +25,9 @@ body {
 
 .form-control {
   background: transparent;
-
   border: 1px 1px solid #994;
   box-shadow: -1px -1px  6px 3px grey;
+
 
 }
 
@@ -40,3 +42,4 @@ text {
     color: white;
     border: 1px 1px solid #994;
 }
+

@@ -41,15 +41,16 @@
                         <a class="dropdown-item text-light" href="#">Something else here</a>
                     </div>
                 </li>
+                <li class="nav-item">
+            <a class="nav-link text-white" role="button" href="{% url 'logout' %}">Logout</a>
+        </li>
             </ul>
             <form class="form-inline my-2 my-lg-0">
                 <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
             </form>
         </div>
-        <li class="nav-item">
-            <a class="nav-link text-white" role="button" href="{% url 'logout' request.user.id %}">Logout</a>
-        </li>
+
         {% elif not request.user.is_authenticated %}
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">

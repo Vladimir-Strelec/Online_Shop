@@ -18,4 +18,4 @@ def painting_payment(request):
     else:
         form = PaymentForm()
 
-    return render(request, "payment.html", {"form": form})
+    return render(request, "web/payment.html", {"form": form})
