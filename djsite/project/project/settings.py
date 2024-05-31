@@ -24,6 +24,7 @@ INSTALLED_APPS = [
 
 
 
+
     'project.account',
     'project.web',
 
@@ -125,4 +126,4 @@ EMAIL_HOST_USER = 'vovikgithub@gmail.com'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_PASSWORD = "yjjuwotgzpfzkjfw"
+EMAIL_HOST_PASSWORD = ""

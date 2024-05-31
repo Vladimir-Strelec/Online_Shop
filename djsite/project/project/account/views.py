@@ -4,6 +4,7 @@ import string
 from django.contrib import auth, messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
+from django.core.exceptions import ValidationError
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy, reverse
 from django.views.generic import CreateView
@@ -34,6 +35,7 @@ def create_user(request):
             user.set_password(password1)
             user.save()
             send_email_for_verify(request, user)
+
             return redirect('home')
 
     form = RegisterUserForm()
@@ -41,7 +43,7 @@ def create_user(request):
 
 
 def login_user(request):
-
+    form = LoginUserForm()
     if request.method == 'POST':
         form = LoginUserForm(request.POST)
         user_from_data = (User.objects.filter(email=request.POST['email']))
@@ -55,10 +57,9 @@ def login_user(request):
             if user is not None:
                 login(request, user)
                 return redirect('home')
+        form = LoginUserForm()
+        form.errors[''] = 'Check the correctness of your login or password'
 
-            else:
-                return redirect('login')
-    form = LoginUserForm()
     return render(request,'account/login.html', {'form': form})
 
 
@@ -68,6 +69,7 @@ def logout_user(request):
         messages.success(request, "You are logged out")
         return redirect('home')
     return render(request, 'account/logout.html', {})
+
 
 def verify_email_view(request):
     u = request

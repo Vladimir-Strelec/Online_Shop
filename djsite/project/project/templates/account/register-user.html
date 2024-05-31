@@ -17,8 +17,9 @@
 <!--    display:block" type="submit">Register</button>-->
 <!--    </form>-->
 
-    <form class="container" method="post" enctype="multipart/form-data">
+    <form class="container" action="{% url 'register' %}" method="post" enctype="multipart/form-data">
         {% csrf_token %}
+        {{form}}
         <div class="filter">
 
         {% for f in form %}

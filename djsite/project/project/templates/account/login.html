@@ -1,18 +1,21 @@
 {% extends 'base.html'%}
 
 
-
 {% block content %}
-    <form class="container" method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        <div class="filter">
-            {% for f in form %}
-            <div style="width: 90%; margin: 0 auto;">
-                <label class="label-and-text">{{f.label}}</label>
-                {{ f }}
-            </div>
-            {% endfor %}
-            <button type="submit">Enter</button>
+<form class="container" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {% if form.errors %}
+        <h3 class="label-and-text">{{ form.errors }}</h3>
+    {% endif %}
+    <div class="filter">
+
+        {% for f in form %}
+        <div style="width: 90%; margin: 0 auto;">
+            <label class="label-and-text">{{f.label}}</label>
+            {{ f }}
         </div>
-    </form>
+        {% endfor %}
+        <button type="submit">Enter</button>
+    </div>
+</form>
 {% endblock %}
