@@ -21,7 +21,7 @@ def client_numer_generator(size=6, chars=string.ascii_uppercase + string.digits)
 
 def create_user(request):
     """call the dispatch method"""
-    RedirectToHome()
+    # RedirectToHome()
 
     if request.method == 'POST':
         form = RegisterUserForm(request.POST)

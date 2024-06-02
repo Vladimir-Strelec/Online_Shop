@@ -4,7 +4,7 @@ from django.views.generic import TemplateView
 from .views import create_user, login_user, logout_user, verify_email_view
 
 urlpatterns = [
-    path('', create_user, name='register'),
+    path('register', create_user, name='register'),
     path('login/', login_user, name='login'),
     path('logout/', logout_user, name='logout'),
 
