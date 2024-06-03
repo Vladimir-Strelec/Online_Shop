@@ -71,7 +71,7 @@ def logout_user(request):
     return render(request, 'account/logout.html', {})
 
 
-def verify_email_view(request):
+def verify_email_view(request, uidb64, token):
     u = request
     return u
 
