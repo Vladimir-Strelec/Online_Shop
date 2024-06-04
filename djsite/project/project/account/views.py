@@ -7,11 +7,13 @@ from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy, reverse
+from django.utils.encoding import force_bytes
+from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.views.generic import CreateView
 
 from .forms import RegisterUserForm, LoginUserForm
 from .models import ShopUser
-from .utils import send_email_for_verify
+from .utils import send_email_for_verify, token_generator
 from ..mixins.mixin_view import RedirectToHome
 
 
@@ -72,6 +74,8 @@ def logout_user(request):
 
 
 def verify_email_view(request, uidb64, token):
-    u = request
-    return u
+    user_id = urlsafe_base64_decode(uidb64).decode()
+    current_user = User.objects.filter(id=user_id)
+    login(request, current_user[0])
+    return redirect('home')
 
