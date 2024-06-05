@@ -4,7 +4,7 @@ from .forms import PaymentForm
 from .models import Painting
 
 
-def home(request):
+def home_view(request):
     return render(request, 'base.html', {})
 
 

@@ -75,7 +75,6 @@ def logout_user(request):
 
 def verify_email_view(request, uidb64, token):
     user_id = urlsafe_base64_decode(uidb64).decode()
-    current_user = User.objects.filter(id=user_id)
-    login(request, current_user[0])
-    return redirect('home')
+    request.user = User.objects.filter(id=user_id)[0]
+    return render(request, 'base.html', {})
 
