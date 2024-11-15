@@ -9,6 +9,7 @@ SECRET_KEY = 'django-insecure-&m7)j26)#9c4fqe33m$*nfpase#&m1=5amh)e(14fwud0dk4k3
 
 DEBUG = True
 
+
 ALLOWED_HOSTS = []
 
 
@@ -27,6 +28,7 @@ INSTALLED_APPS = [
 
     'project.account',
     'project.web',
+    'paypal.standard.ipn',
 
 
 ]
@@ -127,3 +129,9 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_PASSWORD = "reos lcng wcas ijbd"
+
+#Add Paypal
+
+
+PAYPAL_TEST = True
+PAYPAL_RECEIVER_EMAIL = "businessvova@vovagmail.com" # Business Sandbox account

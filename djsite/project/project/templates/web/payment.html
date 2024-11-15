@@ -1,13 +1,12 @@
 {% extends 'base.html'%}
 
 
-
 {% block content %}
 
 <h2 style="align-text: center; color: white;">Buy a Painting</h2>
 
 <form class="container" action="{% url 'payment' %}" method="post" enctype="multipart/form-data">
-        {% csrf_token %}
+    {% csrf_token %}
     <div class="filter">
         {% for f in form %}
         <div style="width: 90%; margin: 0 auto;">
@@ -16,9 +15,10 @@
         </div>
         {% endfor %}
     </div>
+    {{ form.render }}
+    <button type="submit" role="button"> To buy</button>
+</form>
 
-        <button type="submit" role="button"> To buy</button>
-    </form>
 
 
 {% endblock %}
