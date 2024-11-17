@@ -11,32 +11,35 @@ def home_view(request):
 
 
 def painting_payment(request):
+    host = request.get_host()
+    paypal_dict = {
+        "business": settings.PAYPAL_RECEIVER_EMAIL,
+        "amount": "10000000.00",
+        "item_name": "name of the item",
+        "invoice": request.user.id,
+        "notify_url": 'https://{}{}'.format(host, reverse("paypal-ipn")),
+        "return": 'https://{}{}'.format(host, reverse("paypal-ipn")),
+        "cancel_return": 'https://{}{}'.format(host, reverse("paypal-ipn")),
+        "custom": "premium_plan",  # Custom command to correlate to some function later (optional)
+    }
+
     if request.method == 'POST':
-        form = PaymentForm(request.POST, request.FILES)
+
+        form = PayPalPaymentsForm(initial=paypal_dict)
 
         if form.is_valid():
             form.save()
             return redirect('home')
 
-    form = PaymentForm()
-
+    form = PayPalPaymentsForm(initial=paypal_dict)
     return render(request, "web/payment.html", {"form": form})
 
 
-def view_that_asks_for_money(request):
+#def view_that_asks_for_money(request):
     # What you want the button to do.
-    paypal_dict = {
-        "business": "receiver_email@example.com",
-        "amount": "10000000.00",
-        "item_name": "name of the item",
-        "invoice": "unique-invoice-id",
-        "notify_url": request.build_absolute_uri(reverse('paypal-ipn')),
-        "return": request.build_absolute_uri(reverse('your-return-view')),
-        "cancel_return": request.build_absolute_uri(reverse('your-cancel-view')),
-        "custom": "premium_plan",  # Custom command to correlate to some function later (optional)
-    }
+
 
     # Create the instance.
-    form = PayPalPaymentsForm(initial=paypal_dict)
-    context = {"form": form}
-    return render(request, "web/payment.html", context)
+    #form = PayPalPaymentsForm(initial=paypal_dict)
+    #context = {"form": form}
+    #return render(request, "web/payment.html", context)
